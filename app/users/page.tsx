@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import CollectionCards from "../component/collectionCard";
+import { useRouter } from "next/navigation";
 
 type UsersList = {
   id: number;
@@ -19,6 +20,7 @@ const HomeScreen = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const pageNumbers = [5, 15, 20, 25, 30, 35, 40, 45, 50];
+  const router = useRouter();
 
   const getUsersList = async () => {
     try {
@@ -88,6 +90,21 @@ const HomeScreen = () => {
   return (
     <main className="relative min-h-screen overflow-hidden">
       {/* Ambient background — outside the scroll area so it stays put */}
+
+      <div className="absolute top-10 right-10 flex-col flex gap-4">
+        <button
+          onClick={() => router.push("/users/addUser")}
+          className="bg-violet-400 text-white px-4 py-1 rounded"
+        >
+          + Add Users
+        </button>
+        <button
+          onClick={() => router.push("/users/addUser?reactForm=true")}
+          className="bg-violet-400 text-white px-4 py-1 rounded"
+        >
+          + Add Users React form
+        </button>
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-indigo-50 via-white to-white dark:from-indigo-950/40 dark:via-neutral-950 dark:to-neutral-950"
