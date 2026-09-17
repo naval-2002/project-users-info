@@ -8,7 +8,7 @@ export const genderOptions = ["Male", "Female", "Others"];
 export const maritialStatus = ["single", "married"];
 export const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
-type UserData = {
+export type UserData = {
   name: string;
   email: string;
   gender: string;
