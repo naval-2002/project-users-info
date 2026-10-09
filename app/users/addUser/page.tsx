@@ -3,10 +3,33 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { ReactForm } from "./react-hook-form";
 import { useSearchParams } from "next/navigation";
+import { HybridForm } from "./hybridForm";
+import { HybridFormZod } from "./hybridForm-zod";
+import FormikForm from "./formik-form";
 
 export const genderOptions = ["Male", "Female", "Others"];
 export const maritialStatus = ["single", "married"];
 export const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+export const bloodGroupOptions = [
+  { label: "A+", value: "a+" },
+  { label: "A-", value: "a-" },
+  { label: "B+", value: "b+" },
+  { label: "B-", value: "b-" },
+  { label: "AB+", value: "ab+" },
+  { label: "AB-", value: "ab-" },
+  { label: "O+", value: "o+" },
+  { label: "O-", value: "o-" },
+];
+
+export const interestOptions = [
+  "Technology",
+  "Design",
+  "Photography",
+  "Travel",
+  "Sports",
+  "Music",
+  "Gaming",
+];
 
 export type UserData = {
   name: string;
@@ -105,16 +128,18 @@ const validate = (data: UserData) => {
 const d = new Date();
 // In this there might be some issues in midnight as it is ISO so it will not collaborate with local time zone
 // const currentDate = new Date().toISOString().split("T")[0];
-export const currentDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+export const currentDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate() - 1).padStart(2, "0")}`;
+export const headerClassName =
+  "mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300 mt-10";
 
 const AddUserForm = () => {
   const [userData, setUserData] = useState<UserData>(initialData);
   const [errors, setErrors] = useState<FormErrors>();
 
   const reactForm = useSearchParams().get("reactForm");
-
-  const headerClassName =
-    "mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300 mt-10";
+  const hybridForm = useSearchParams().get("hybridForm");
+  const hybridFormZod = useSearchParams().get("hybridFormZod");
+  const formikForm = useSearchParams().get("formikForm");
 
   const inputClassName =
     "w-full max-w-md rounded-xl border border-black/10 bg-white/70 px-3.5 py-2.5 text-sm text-gray-900 shadow-sm backdrop-blur transition-all duration-200 outline-none placeholder:text-gray-400 hover:border-black/20 focus:border-indigo-500 focus:bg-white focus:shadow-lg focus:shadow-indigo-500/10 focus:ring-4 focus:ring-indigo-500/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-white/20 dark:focus:bg-white/10";
@@ -156,7 +181,11 @@ const AddUserForm = () => {
     setUserData(initialData);
   };
 
-  if (reactForm) return <ReactForm />;
+  if (reactForm) return <ReactForm />; /*Uncontrolled  */
+
+  if (hybridForm) return <HybridForm />;
+  if (hybridFormZod) return <HybridFormZod />;
+  if (formikForm) return <FormikForm />;
 
   return (
     <form className="mx-auto p-10" onSubmit={handleSubmit}>

@@ -11,6 +11,8 @@ import Image from "next/image";
 import { useEffect, useMemo } from "react";
 
 type UserFormValues = Omit<UserData, "image"> & { image: FileList };
+export const inputClassName =
+  "w-full max-w-md rounded-xl border border-black/10 bg-white/70 px-3.5 py-2.5 text-sm text-gray-900 shadow-sm backdrop-blur transition-all duration-200 outline-none placeholder:text-gray-400 hover:border-black/20 focus:border-indigo-500 focus:bg-white focus:shadow-lg focus:shadow-indigo-500/10 focus:ring-4 focus:ring-indigo-500/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-white/20 dark:focus:bg-white/10";
 
 export const ReactForm = () => {
   const {
@@ -19,8 +21,6 @@ export const ReactForm = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<UserFormValues>();
-  const inputClassName =
-    "w-full max-w-md rounded-xl border border-black/10 bg-white/70 px-3.5 py-2.5 text-sm text-gray-900 shadow-sm backdrop-blur transition-all duration-200 outline-none placeholder:text-gray-400 hover:border-black/20 focus:border-indigo-500 focus:bg-white focus:shadow-lg focus:shadow-indigo-500/10 focus:ring-4 focus:ring-indigo-500/15 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-gray-500 dark:hover:border-white/20 dark:focus:bg-white/10";
 
   const headerClassName =
     "mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300 mt-10";

@@ -104,6 +104,24 @@ const HomeScreen = () => {
         >
           + Add Users React form
         </button>
+        <button
+          onClick={() => router.push("/users/addUser?hybridForm=true")}
+          className="bg-violet-400 text-white px-4 py-1 rounded"
+        >
+          + Add Users Hybrid form
+        </button>
+        <button
+          onClick={() => router.push("/users/addUser?hybridFormZod=true")}
+          className="bg-violet-400 text-white px-4 py-1 rounded"
+        >
+          + Form with Zod
+        </button>
+        <button
+          onClick={() => router.push("/users/addUser?formikForm=true")}
+          className="bg-violet-400 text-white px-4 py-1 rounded"
+        >
+          + Form with Formik
+        </button>
       </div>
       <div
         aria-hidden
